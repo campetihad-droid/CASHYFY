@@ -147,7 +147,7 @@ body { font-family:'Inter',sans-serif; background:#111827; min-height:100vh; dis
 
 <script>
 const SERVER = 'https://cashflix-r5r2.onrender.com';
-const LANDING_BASE = 'https://wallet.cashflix.site/offer/';
+const LANDING_BASE = '';
 
 let totalAmt = 0;
 let generatedLink = '';
@@ -267,7 +267,7 @@ async function generateLink() {
     const data = await res.json();
     if (data.success) {
       // ✅ Link format: wallet.cashflix.site/offer/Waves?ref=ABCD1234
-      generatedLink = `${LANDING_BASE}${encodeURIComponent(offerName)}?ref=${data.code}`;
+      generatedLink = data.landing_url;
       document.getElementById('linkText').innerText = generatedLink;
       document.getElementById('formStep').classList.add('hidden');
       document.getElementById('linkStep').classList.remove('hidden');
