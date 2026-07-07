@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/refer/:offer", "destination": "/index.html" },
+    { "source": "/refer", "destination": "/index.html" }
+  ]
+}
