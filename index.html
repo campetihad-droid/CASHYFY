@@ -104,7 +104,7 @@ body { font-family:'Inter',sans-serif; background:#111111; min-height:100vh; dis
       <div id="linkStep" class="hidden">
         <div class="link-pill">
           <i class="fa-solid fa-link"></i>
-          <input type="text" id="linkText" readonly onclick="this.select()">
+          <input type="text" id="linkText" onkeydown="return false" onpaste="return false" oncut="return false">
         </div>
         <button class="copy-btn" onclick="copyLink()">
           COPY REFER LINK
@@ -313,3 +313,4 @@ document.getElementById('phoneInput').addEventListener('keypress', function(e) {
 </script>
 </body>
 </html>
+
