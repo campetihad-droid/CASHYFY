@@ -28,7 +28,8 @@ body { font-family:'Inter',sans-serif; background:#111111; min-height:100vh; dis
 .gen-btn:hover { transform:translateY(-2px); }
 .gen-btn:disabled { opacity:.7; cursor:not-allowed; transform:none; }
 .link-pill { background:#fff; border-radius:50px; padding:0 16px; display:flex; align-items:center; gap:12px; height:56px; box-shadow:0 2px 12px rgba(0,0,0,.08); margin-bottom:12px; }
-.link-pill div { flex:1; font-size:13px; color:#374151; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.link-pill div { flex:1; font-size:13px; color:#374151; font-weight:500; }
+.link-pill input { flex:1; border:none; outline:none; background:transparent; font-size:13px; color:#374151; font-weight:500; font-family:'Inter',sans-serif; cursor:text; overflow-x:auto; white-space:nowrap; text-overflow:clip; }
 .copy-btn { width:100%; height:54px; border-radius:50px; background:linear-gradient(135deg,#1c1c1c,#3a3a3a); color:#fdf6e3; font-weight:700; font-size:15px; border:none; cursor:pointer; letter-spacing:1px; box-shadow:0 4px 20px rgba(0,0,0,.35); font-family:'Poppins',sans-serif; margin-bottom:12px; display:flex; align-items:center; justify-content:center; gap:12px; }
 .new-link-btn { width:100%; height:46px; border-radius:50px; background:#fff; color:#1c1c1c; font-weight:700; font-size:14px; border:2px solid #1c1c1c; cursor:pointer; font-family:'Inter',sans-serif; margin-bottom:16px; }
 .custom-section { padding:0 20px 28px; }
@@ -64,13 +65,7 @@ body { font-family:'Inter',sans-serif; background:#111111; min-height:100vh; dis
     <div class="logo-wrap">
       <div class="logo-outer">
         <div class="logo-inner">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-            <circle cx="14" cy="12" r="5" stroke="#f0dfae" stroke-width="2.5"/>
-            <circle cx="24" cy="26" r="5" stroke="#fdf6e3" stroke-width="2.5"/>
-            <line x1="14" y1="17" x2="24" y2="21" stroke="#f0dfae" stroke-width="2" stroke-dasharray="2 2"/>
-            <circle cx="14" cy="12" r="2" fill="#f0dfae"/>
-            <circle cx="24" cy="26" r="2" fill="#fdf6e3"/>
-          </svg>
+          <img src="PASTE_YOUR_LOGO_LINK_HERE" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
         </div>
       </div>
     </div>
@@ -109,7 +104,7 @@ body { font-family:'Inter',sans-serif; background:#111111; min-height:100vh; dis
       <div id="linkStep" class="hidden">
         <div class="link-pill">
           <i class="fa-solid fa-link"></i>
-          <div id="linkText"></div>
+          <input type="text" id="linkText" readonly onclick="this.select()">
         </div>
         <button class="copy-btn" onclick="copyLink()">
           COPY REFER LINK
@@ -286,7 +281,7 @@ async function generateLink() {
     if (data.success) {
       // ✅ Link format: wallet.cashflix.site/offer/Waves?ref=ABCD1234
       generatedLink = data.landing_url;
-      document.getElementById('linkText').innerText = generatedLink;
+      document.getElementById('linkText').value = generatedLink;
       document.getElementById('formStep').classList.add('hidden');
       document.getElementById('linkStep').classList.remove('hidden');
       showToast('Refer link generated!', true);
@@ -317,5 +312,4 @@ document.getElementById('phoneInput').addEventListener('keypress', function(e) {
 });
 </script>
 </body>
-  </html>
-  
+</html>
