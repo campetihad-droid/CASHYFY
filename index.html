@@ -234,6 +234,13 @@ function toggleCustom() {
 function applyCustom() {
   const u = parseInt(document.getElementById('userPayout').value) || 0;
   const m = totalAmt - u;
+
+  // ✅ Yahan bhi wahi check — User ko kam se kam ₹1 milna chahiye
+  if (u <= 0) {
+    showToast('User must get at least ₹1', false);
+    return;
+  }
+
   document.getElementById('myPayout').value = m;
   const offerName = document.getElementById('offerSelect').value;
   document.getElementById('subtitle').innerText = `${offerName} - ₹${u} per refer`;
@@ -259,12 +266,18 @@ async function generateLink() {
     return;
   }
 
+  const userPayout = parseInt(document.getElementById('userPayout').value) || 0;
+  const myPayout = parseInt(document.getElementById('myPayout').value) || 0;
+
+  // ✅ Agar "You Get" me pura payout chala jaye (User ko 0 mile), to link generate mat karo
+  if (userPayout <= 0) {
+    showToast('User must get at least ₹1', false);
+    return;
+  }
+
   errorMsg.style.display = 'none';
   genBtn.innerText = 'Generating...';
   genBtn.disabled = true;
-
-  const userPayout = parseInt(document.getElementById('userPayout').value) || 0;
-  const myPayout = parseInt(document.getElementById('myPayout').value) || 0;
 
   try {
     const res = await fetch(`${SERVER}/refer/create`, {
@@ -313,4 +326,5 @@ document.getElementById('phoneInput').addEventListener('keypress', function(e) {
 </script>
 </body>
 </html>
+
 
